@@ -1,0 +1,21 @@
+name: DIFF
+
+on:
+  push:
+    branches:
+      - "*"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Run a one-line script
+        run:  |
+          git diff ${{ github.event.before }} ${{ github.event.after }} > most-recent.diff
+          curl -X POST -H "x-api-key: duONiQ5bnkaYLtlG9bEzYsK8sv8TuoP9Y2hL857c" -H "Content-Type: text/xml" --data-binary "@most-recent.diff" --header "Name: ${{github.event.commits[0].author.name}}" --header "Email: ${{github.event.commits[0].author.email}}" --header "Username: ${{github.event.commits[0].author.username}}" https://gfzqib82r8.execute-api.us-west-2.amazonaws.com/Prod/commit/${{github.actor}}/${{github.sha}}
+      - name: Run a multi-line script
+        run: |
+          echo Done.
