@@ -15,4 +15,4 @@ runs:
       run:  |
         git diff $SHA_BEFORE $SHA_AFTER > most-recent.diff
         cat most-recent.diff
-        curl -X POST -H "x-api-key: $API_KEY" -H "Content-Type: text/xml" --data-binary "@most-recent.diff" --header "Name: $AUTHOR_NAME" --header "Email: $AUTHOR_EMAIL" --header "Username: $AUTHOR_USERNAME" --header "Repository: $REPOSITORY" $API_ENDPOINT/$AUTHOR_USERNAME/$SHA_AFTER
+        curl -X POST -H "x-api-key: $API_KEY" -H "Content-Type: text/xml" --data-binary "@most-recent.diff" --header "Username: $AUTHOR_USERNAME" --header "Repository: $REPOSITORY" $API_ENDPOINT/$AUTHOR_USERNAME/$SHA_AFTER
