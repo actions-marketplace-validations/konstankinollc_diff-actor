@@ -1,8 +1,9 @@
 
 name: konstankino-diff-actor
 description: diffs the code
-icon: "activity"
-color: "blue"
+branding:
+  icon: "activity"
+  color: "blue"
 
 on:
   push:
