@@ -17,7 +17,8 @@ jobs:
       - name: Run the differ
         run:  |
           git diff ${{ SHA_BEFORE }} ${{ SHA_AFTER }} > most-recent.diff
-          curl -X POST -H "x-api-key: ${{ inputs.api_key }}" -H "Content-Type: text/xml" --data-binary "@most-recent.diff" --header "Name: ${{inputs.author_name}}" --header "Email: ${{inputs.author_email}}" --header "Username: ${{inputs.author_username}}" --header "Repository: ${{ inputs.repository }}" ${{ inputs.api_endpoint }}/${{inputs.username}}/${{inputs.sha_after}}
+          cat most-recent.diff
+          # curl -X POST -H "x-api-key: ${{ inputs.api_key }}" -H "Content-Type: text/xml" --data-binary "@most-recent.diff" --header "Name: ${{inputs.author_name}}" --header "Email: ${{inputs.author_email}}" --header "Username: ${{inputs.author_username}}" --header "Repository: ${{ inputs.repository }}" ${{ inputs.api_endpoint }}/${{inputs.username}}/${{inputs.sha_after}}
           
 inputs:
   sha_before:
