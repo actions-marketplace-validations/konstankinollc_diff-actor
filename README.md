@@ -12,9 +12,7 @@ on:
 env:
   SHA_AFTER: ${{ github.event.pull_request.head.sha }}
   SHA_BEFORE: ${{ github.event.pull_request.base.sha }}
-  AUTHOR_NAME: ${{ github.event.head_commit.author.name }}
-  AUTHOR_EMAIL: ${{ github.event.head_commit.author.email }}
-  AUTHOR_USERNAME: ${{ github.event.head_commit.author.username }}
+  AUTHOR_USERNAME: ${{ github.event.pull_request.user.login }}
   REPOSITORY: ${{ github.repository }}
   API_ENDPOINT: ${{ secrets.POST_ENDPOINT }}
   API_KEY: ${{ secrets.API_KEY }}
