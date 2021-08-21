@@ -4,8 +4,6 @@ description: diffs the code
 branding:
   icon: "activity"
   color: "blue"
-  
-on: [push]
 
 runs:
   using: "composite"
