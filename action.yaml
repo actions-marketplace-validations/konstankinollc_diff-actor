@@ -41,9 +41,6 @@ inputs:
   author_username:
     description: ""
     required: true
-  author_username:
-    description: ""
-    required: true
   repository:
     description: ""
     required: true
