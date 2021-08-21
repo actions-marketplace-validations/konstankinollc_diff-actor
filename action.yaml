@@ -10,7 +10,8 @@ on: [push]
 runs:
   using: "composite"
   steps:
-    - shell: Run the differ
+    - name: Run the differ
+      shell: bash
       run:  |
         git diff $SHA_BEFORE $SHA_AFTER > most-recent.diff
         cat most-recent.diff
