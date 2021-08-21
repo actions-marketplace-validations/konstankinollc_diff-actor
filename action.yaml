@@ -4,11 +4,8 @@ description: diffs the code
 branding:
   icon: "activity"
   color: "blue"
-
-on:
-  push:
-    branches:
-      - "*"
+  
+on: [push]
 
 jobs:
   build:
@@ -19,6 +16,6 @@ jobs:
           fetch-depth: 0
       - name: Run the differ
         run:  |
-          git diff ${{ github.event.before }} ${{ github.event.after }} > most-recent.diff
-          curl -X POST -H "x-api-key: ${{ secrets.API_KEY }}" -H "Content-Type: text/xml" --data-binary "@most-recent.diff" --header "Name: ${{github.event.head_commit.author.name}}" --header "Email: ${{github.event.head_commit.author.email}}" --header "Username: ${{github.event.head_commit.author.username}}" --header "Repository: ${{ github.repository }}" ${{ secrets.POST_ENDPOINT }}/${{github.actor}}/${{github.sha}}
+          git diff ${{ inputs.sha_before }} ${{ inputs.sha_after }} > most-recent.diff
+          curl -X POST -H "x-api-key: ${{ inputs.api_key }}" -H "Content-Type: text/xml" --data-binary "@most-recent.diff" --header "Name: ${{inputs.author_name}}" --header "Email: ${{inputs.author_email}}" --header "Username: ${{inputs.author_username}}" --header "Repository: ${{ inputs.repository }}" ${{ inputs.endpoint }}/${{inputs.actor}}/${{inputs.sha_after}}
           
