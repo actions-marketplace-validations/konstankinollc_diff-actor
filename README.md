@@ -1,5 +1,12 @@
 ## diff-actor
 
+Make sure you have the following secrets configured for the project:
+
+```bash
+API_ENDPOINT
+API_KEY
+```
+
 Example configuration
 
 ```yaml
@@ -14,7 +21,7 @@ env:
   SHA_BEFORE: ${{ github.event.pull_request.base.sha }}
   AUTHOR_USERNAME: ${{ github.event.pull_request.user.login }}
   REPOSITORY: ${{ github.repository }}
-  API_ENDPOINT: ${{ secrets.POST_ENDPOINT }}
+  API_ENDPOINT: ${{ secrets.API_ENDPOINT }}
   API_KEY: ${{ secrets.API_KEY }}
 
 jobs:
