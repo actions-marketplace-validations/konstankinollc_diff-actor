@@ -21,6 +21,7 @@ env:
   SHA_BEFORE: ${{ github.event.pull_request.base.sha }}
   AUTHOR_USERNAME: ${{ github.event.pull_request.user.login }}
   REPOSITORY: ${{ github.repository }}
+  EVENT_TITLE: ${{ github.event.pull_request.title }}
   API_ENDPOINT: ${{ secrets.API_ENDPOINT }}
   API_KEY: ${{ secrets.API_KEY }}
 
