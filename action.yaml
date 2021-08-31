@@ -12,4 +12,5 @@ runs:
       shell: bash
       run:  |
         git diff $SHA_BEFORE $SHA_AFTER > most-recent.diff
+        echo $(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")
         curl -X POST -H "x-api-key: $API_KEY" -H "Content-Type: text/xml" --data-binary "@most-recent.diff" --header "Title: $EVENT_TITLE" --header "Username: $AUTHOR_USERNAME" --header "Repository: $REPOSITORY" $API_ENDPOINT/pull-request/$PR_NUMBER
