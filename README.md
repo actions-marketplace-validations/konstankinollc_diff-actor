@@ -21,6 +21,7 @@ env:
   SHA_BEFORE: ${{ github.event.pull_request.base.sha }}
   AUTHOR_USERNAME: ${{ github.event.pull_request.user.login }}
   REPOSITORY: ${{ github.repository }}
+  PR_NUMBER: ${{ github.repository.number }}
   EVENT_TITLE: ${{ github.event.pull_request.title }}
   API_ENDPOINT: ${{ secrets.API_ENDPOINT }}
   API_KEY: ${{ secrets.API_KEY }}
@@ -34,7 +35,7 @@ jobs:
         with:
           fetch-depth: 0
       - name: konstankino-diff-actor
-        uses: konstankinollc/diff-actor@v1.0
+        uses: konstankinollc/diff-actor@main
 
         
 ```
