@@ -18,10 +18,8 @@ runs:
         SHA_BEFORE=$(jq --raw-output .pull_request.base.sha "$GITHUB_EVENT_PATH")
         AUTHOR_USERNAME=$(jq --raw-output .pull_request.user.login "$GITHUB_EVENT_PATH")
         REPOSITORY=${{ github.repository }}
-        REPOSITORY2=$(jq --raw-output .github.repository "$GITHUB_EVENT_PATH")
         EVENT_TITLE=$(jq --raw-output .pull_request.title "$GITHUB_EVENT_PATH")
         
-        echo $REPOSITORY
-        echo $REPOSITORY2
+        cat most-recent.diff
         
         curl -X POST -H "x-api-key: $API_KEY" -H "Content-Type: text/xml" --data-binary "@most-recent.diff" --header "Title: $EVENT_TITLE" --header "Username: $AUTHOR_USERNAME" --header "Repository: $REPOSITORY" $API_ENDPOINT/pull-request/$PR_NUMBER
