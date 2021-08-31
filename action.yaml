@@ -20,6 +20,6 @@ runs:
         REPOSITORY=${{ github.repository }}
         EVENT_TITLE=$(jq --raw-output .pull_request.title "$GITHUB_EVENT_PATH")
         
-        echo $REPOSITORY
+        echo $EVENT_TITLE
         
         curl -X POST -H "x-api-key: $API_KEY" -H "Content-Type: text/xml" --data-binary "@most-recent.diff" --header "Title: $EVENT_TITLE" --header "Username: $AUTHOR_USERNAME" --header "Repository: $REPOSITORY" $API_ENDPOINT/pull-request/$PR_NUMBER
