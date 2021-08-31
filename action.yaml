@@ -11,7 +11,5 @@ runs:
     - name: Run the differ
       shell: bash
       run:  |
-        echo "${{ toJSON(github.event) }}"
         git diff $SHA_BEFORE $SHA_AFTER > most-recent.diff
-        cat most-recent.diff
         curl -X POST -H "x-api-key: $API_KEY" -H "Content-Type: text/xml" --data-binary "@most-recent.diff" --header "Title: $EVENT_TITLE" --header "Username: $AUTHOR_USERNAME" --header "Repository: $REPOSITORY" $API_ENDPOINT/pull-request/$PR_NUMBER
